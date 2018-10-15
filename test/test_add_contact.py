@@ -4,8 +4,6 @@ from model.contact import Contact
 
 
 def test_add_contact(app):
-    app.open_home_page()
-    app.contact.open_contact_page()
     old_contacts = app.contact.get_contact_list()
     contact = Contact(firstname="fdfd", middlename="dd", lastname="ssd", nickname="dfd", title="fd",
                       company="gg", address="dds", home="sfs", mobile="sdsd", work="sdfd", fax="tt",
