@@ -14,6 +14,7 @@ def test_add_contact(app):
                       phone2="ergth",
                       notes="trt")
     app.contact.create_contact(contact)
+    app.open_home_page()
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) + 1 == len(new_contacts)
     old_contacts.append(contact)

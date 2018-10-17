@@ -14,6 +14,7 @@ class ContactHelper:
 
     def create_contact(self, contact):
         wd = self.app.wd
+        self.open_contact_page()
         # fill group form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -119,8 +120,7 @@ class ContactHelper:
         wd = self.app.wd
         contacts = []
         for element in wd.find_elements_by_css_selector("tr[name='entry']"):
-            #text = element.find_element_by_xpath("td:nth-child(2)")
-            cell_list = element.find_elements_by_tag_name("td")[1].text
+            text = element.find_elements_by_tag_name("td")[1].text
             id = element.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Contact(firstname=cell_list, id=id))
+            contacts.append(Contact(lastname=text, id=id))
         return contacts
