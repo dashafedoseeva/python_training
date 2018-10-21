@@ -13,10 +13,10 @@ def test_modification_contact(app):
                     phone2="ergth",
                     notes="trt"))
     app.open_home_page()
+    contact = Contact(firstname="New",lastname="ssd")
     old_contacts = app.contact.get_contact_list()
-    contact = Contact(firstname="New", lastname="f")
     contact.id = old_contacts[0].id
-    app.contact.modification_contact(contact)
+    app.contact.modification_first_contact(contact)
     app.open_home_page()
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
