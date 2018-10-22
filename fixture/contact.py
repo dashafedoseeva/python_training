@@ -19,7 +19,7 @@ class ContactHelper:
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_elements_by_name("selected[]")[index].click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
 
     def create_contact(self, contact):
         wd = self.app.wd
@@ -71,8 +71,6 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
         self.select_contact_by_index(index)
-        # submit update
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
         # fill group form
         self.fill_contact_form(new_contact_date)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()

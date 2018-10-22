@@ -15,7 +15,7 @@ def test_modification_contact(app):
                     phone2="ergth",
                     notes="trt"))
     app.open_home_page()
-    contact = Contact(firstname="New",lastname="ssd")
+    contact = Contact(firstname="LLLLLLLgggggggggggv",lastname="UUUU")
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
     contact.id = old_contacts[index].id
