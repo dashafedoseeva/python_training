@@ -9,7 +9,7 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def open_contact_page(self,index):
+    def open_contact_page(self, index):
         wd = self.app.wd
         if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("Enter")) > 0):
             wd.find_element_by_link_text("add new").click()
@@ -21,7 +21,6 @@ class ContactHelper:
     def open_contact_view_by_details(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("//img[@alt='Details']")[index].click()
-
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -98,10 +97,9 @@ class ContactHelper:
                 last_name = element.find_elements_by_tag_name("td")[1].text
                 first_name = element.find_elements_by_tag_name("td")[2].text
                 id = element.find_element_by_name("selected[]").get_attribute("value")
-                all_phones = element.find_elements_by_tag_name("td")[5].text.splitlines()
-                self.contact_cache.append(Contact(firstname=first_name, lastname=last_name, id=id,
-                                                  home=all_phones[0], mobile=all_phones[1],
-                                                  work=all_phones[2], phone2=all_phones[3]))
+                all_phones = element.find_elements_by_tag_name("td")[5].text
+                self.contact_cache.append(
+                    Contact(firstname=first_name, lastname=last_name, id=id, all_phones_from_home_page=all_phones))
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index):
