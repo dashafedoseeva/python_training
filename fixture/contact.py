@@ -9,7 +9,7 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def open_contact_page(self, index):
+    def open_contact_page(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("Enter")) > 0):
             wd.find_element_by_link_text("add new").click()
@@ -46,7 +46,7 @@ class ContactHelper:
         self.type("mobile", contact.mobile)
         self.type("work", contact.work)
         self.type("phone2", contact.phone2)
-        self.type("phone2", contact.email_)
+        self.type("email", contact.email)
 
 
     def type(self, field_firstname, text):
