@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from random import randrange
-
 from model.contact import Contact
 
 

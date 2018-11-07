@@ -42,11 +42,14 @@ class ContactHelper:
         wd = self.app.wd
         self.type("firstname", contact.firstname)
         self.type("lastname", contact.lastname)
+        self.type("address", contact.lastname)
         self.type("home", contact.home)
         self.type("mobile", contact.mobile)
         self.type("work", contact.work)
         self.type("phone2", contact.phone2)
         self.type("email", contact.email)
+        self.type("email2", contact.email)
+        self.type("email3", contact.email)
 
 
     def type(self, field_firstname, text):
