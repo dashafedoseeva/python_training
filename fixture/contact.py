@@ -26,7 +26,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
-    def select_random_contact(self,index):
+    def select_random_contact(self, index):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
@@ -58,7 +58,6 @@ class ContactHelper:
         self.type("email", contact.email)
         self.type("email2", contact.email)
         self.type("email3", contact.email)
-
 
     def type(self, field_firstname, text):
         wd = self.app.wd
@@ -134,7 +133,8 @@ class ContactHelper:
         email_first = wd.find_element_by_name("email").get_attribute('value')
         email_second = wd.find_element_by_name("email2").get_attribute('value')
         email_third = wd.find_element_by_name("email3").get_attribute('value')
-        return Contact(firstname=firstname, lastname=lastname, id=id, address=address, email=email_first, email2=email_second, email3=email_third,
+        return Contact(firstname=firstname, lastname=lastname, id=id, address=address, email=email_first,
+                       email2=email_second, email3=email_third,
                        home=homephone, mobile=mobilephone,
                        work=workphone,
                        phone2=secondaryphone)
@@ -150,3 +150,16 @@ class ContactHelper:
         secondaryphone = re.search("P: (.*)", text).group(1)
         return Contact(home=homephone, mobile=mobilephone, work=workphone,
                        phone2=secondaryphone)
+
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+        self.select_contact_by_id(id)
+        # submit deletion
+        wd.find_element_by_xpath("(//input[@value='Delete'])").click()
+        wd.switch_to_alert().accept()
+        self.contact_cache = None
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value = '%s']" % id).click()
